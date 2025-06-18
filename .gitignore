@@ -1,0 +1,8 @@
+# node
+node_modules/
+
+# build output
+out/
+
+# VSCode settings (optional)
+.vscode/
