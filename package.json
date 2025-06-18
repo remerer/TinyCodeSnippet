@@ -1,0 +1,41 @@
+{
+  "name": "tiny-code-snippet",
+  "displayName": "Tiny Code Snippet",
+  "description": "\uc790\ub3d9\uc73c\ub85c // \uc785\ub825 \uc2dc TODO \uc8fc\uc11d \uc0dd\uc131",
+  "version": "0.0.5",
+  "publisher": "remerer",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/remerer/TinyCodeSnippet.git"
+  },
+  "activationEvents": [
+    "onLanguage:cpp",
+    "onLanguage:c",
+    "onLanguage:c++",
+    "onLanguage:objective-c",
+    "onLanguage:objective-cpp"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "CPP Snippet Replacer",
+      "properties": {
+        "cppSnippetReplacer.replacements": {
+          "type": "object",
+          "description": "자동 치환할 접두어와 그 설정들"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "typescript": "^4.9.0",
+    "vsce": "^2.15.0"
+  }
+}
