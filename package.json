@@ -2,7 +2,7 @@
   "name": "tiny-code-snippet",
   "displayName": "Tiny Code Snippet",
   "description": "\uc790\ub3d9\uc73c\ub85c // \uc785\ub825 \uc2dc TODO \uc8fc\uc11d \uc0dd\uc131",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "remerer",
   "engines": {
     "vscode": "^1.80.0"

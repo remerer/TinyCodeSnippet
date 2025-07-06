@@ -77,12 +77,17 @@ export function activate(context: vscode.ExtensionContext) {
         finalText = finalText.replace(/\$\{timeValue\}/g, getTimeValue());
         
         if (setting.insertAtCurrentPosition) {
-          // prefix + space를 finalText로 교체 (기존 들여쓰기를 유지)
-          const startPos = new vscode.Position(position.line, position.character - prefix.length);
+          // prefix + space 전체를 finalText로 교체 (정확한 위치 계산)
+          // prefix가 lineText에서 시작하는 위치를 찾음
+          const prefixStart = lineText.lastIndexOf(prefix, position.character - 1);
+          const startPos = new vscode.Position(position.line, prefixStart);
           const endPos = new vscode.Position(position.line, position.character);
           const replaceRange = new vscode.Range(startPos, endPos);
-          // 들여쓰기 추가
-          const indentedFinalText = indent + finalText.replace(/^\s+/, '');
+          // prefix 앞에 이미 indent가 있다면 중복되지 않게 처리
+          let indentedFinalText = finalText;
+          if (!lineText.slice(0, startPos.character).startsWith(indent)) {
+            indentedFinalText = indent + finalText.replace(/^\s+/, '');
+          }
           editor.edit(editBuilder => {
             editBuilder.replace(replaceRange, indentedFinalText);
           });
